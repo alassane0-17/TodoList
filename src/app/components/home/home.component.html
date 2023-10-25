@@ -21,7 +21,8 @@
                       <tr>
                         <th scope="col">id</th>
                         <th scope="col">Task Name</th>
-                        <th scope="col">Staus</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -29,9 +30,34 @@
                         <th scope="row">{{task.id}}</th>
                         <td>{{task.name}}</td>
                         <td>{{task.status}}</td>
+                        <td>
+                            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModal" (click)="call(task)">edit</button> 
+                            <button class="btn btn-danger" type="button" (click)="deleteTask(task)">delete</button></td>
                       </tr>
                     </tbody>
                   </table>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group p-4">
+                <input type="text" class="form-control" placeholder="Enter task name here" [(ngModel)] = "editTaskValue" cli>
+                <button class="btn btn-outline-success" data-dismiss="modal" type="button">+</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editTask()" >Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
                   <h4 class="text-primary mt-4">Pending Tasks</h4>
                   <hr>
@@ -40,7 +66,7 @@
                       <tr>
                         <th scope="col">id</th>
                         <th scope="col">Task Name</th>
-                        <th scope="col">Staus</th>
+                        <th scope="col">Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -59,7 +85,7 @@
                       <tr>
                         <th scope="col">id</th>
                         <th scope="col">Task Name</th>
-                        <th scope="col">Staus</th>
+                        <th scope="col">Status</th>
                       </tr>
                     </thead>
                     <tbody>

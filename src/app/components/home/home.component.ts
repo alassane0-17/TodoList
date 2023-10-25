@@ -12,6 +12,7 @@ export class HomeComponent {
   task: Task = new Task();
   taskArray : Task[] = [];
   addTaskValue : string = '';
+  addTaskStatu: string = ''
   editTaskValue: string = '';
 
   constructor(private todoService: TodoService){}
@@ -33,6 +34,7 @@ export class HomeComponent {
   }
 
   editTask(){
+    this.task.name = this.editTaskValue;
     this.todoService.editTask(this.task).subscribe( res => {
       this.ngOnInit();
     }, err => {
@@ -40,8 +42,8 @@ export class HomeComponent {
     })
   }
 
-  deleteTask(){
-    this.todoService.deleteTask(this.task).subscribe( res => {
+  deleteTask(task: Task){
+    this.todoService.deleteTask(task).subscribe( res => {
       this.ngOnInit();
     }, err => {
       alert("Failed To delete Task")
@@ -56,6 +58,11 @@ export class HomeComponent {
     },err =>{
       alert('Failed to add task');
     });
+  }
+
+  call(task:Task){
+    this.task = task;
+    this.editTaskValue = task.name;
   }
 
   filterTasksByStatus(status: 'pending' | 'complete') {
